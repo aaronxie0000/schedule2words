@@ -1,7 +1,13 @@
 import styles from "./styles/Block.module.css";
 import { useEffect, useRef, useState } from "react";
 
-function Blocks({ multiSelectOn, time, updateTimeSelected }) {
+function Blocks({
+  multiSelectOn,
+  time,
+  updateTimeSelected,
+  typeCanMouseOver,
+  updateCanMouseOver,
+}) {
   const didMountRef = useRef(false);
 
   const blockRef = useRef();
@@ -13,13 +19,19 @@ function Blocks({ multiSelectOn, time, updateTimeSelected }) {
     } else {
       didMountRef.current = true;
     }
-  }, [clicked, updateTimeSelected, time]);
+  }, [clicked]);
 
   function respond(e) {
-    if (!multiSelectOn & (e.type !== "mousedown")) {
+    if (e.type === "mousedown") {
+      updateCanMouseOver(!clicked); // can change mouse over change status only if change to same as starting block's
+      updateClicked((prev) => !prev);
+    } else if (!multiSelectOn) {
       return;
+    } else if (e.type === "mouseover") {
+      updateClicked(typeCanMouseOver);
+    } else {
+      updateClicked((prev) => !prev);
     }
-    updateClicked((prev) => !prev);
   }
 
   return (
@@ -28,7 +40,7 @@ function Blocks({ multiSelectOn, time, updateTimeSelected }) {
       onMouseDown={respond}
       onMouseOver={respond}
       onClick={respond}
-      className={clicked ? styles.clickedBlock : styles.block}
+      className={clicked ? styles.clickedBlock + ' ' + styles.block : styles.unclickedblock  + ' ' + styles.block }
     ></div>
   );
 }

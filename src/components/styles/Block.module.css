@@ -1,14 +1,15 @@
-
-.block{
-    width: 200px;
-    height: 40px;
-    background-color: grey;
-    cursor: pointer;
+.block {
+  width: 200px;
+  height: 40px;
+  cursor: pointer;
+  margin: 2px 0;
+  border: 3px dotted black;
 }
 
+.unclickedblock {
+  background-color: grey;
+}
 
-.clickedBlock{
-    width: 200px;
-    height: 40px;
-    background-color: green;
+.clickedBlock {
+  background-color: green;
 }

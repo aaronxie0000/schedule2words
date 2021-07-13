@@ -1,21 +1,58 @@
+import { useState } from "react";
 import Blocks from "./Blocks";
 
-function Timeblock({ multiSelectOn, timesSelected, updateTimeSelected }) {
+function Timeblock({timesSelected, updateTimeSelected}) {
 
-    const time = '1500'
-    const d = new Date()
-    d.setHours(parseInt(time.slice(0, 2)), parseInt(time.slice(2, 4)))
-    // console.log(d.getHours())
+  const [multiSelectOn, updateMultiSelect] = useState(false);
 
-    console.log(timesSelected)
-    
+  document.body.onmousedown = () => {
+    updateMultiSelect(true);
+  };
+
+  document.body.onmouseup = () => {
+    updateMultiSelect(false);
+  };
+
+  const [typeCanMouseOver, updateCanMouseOver] = useState(false);
+
+
   return (
     <div>
-      <Blocks multiSelectOn={multiSelectOn} updateTimeSelected={updateTimeSelected} time='1500' />
-      <Blocks multiSelectOn={multiSelectOn} updateTimeSelected={updateTimeSelected} time='1530' />
-      <Blocks multiSelectOn={multiSelectOn} updateTimeSelected={updateTimeSelected} time='1600' />
-      <Blocks multiSelectOn={multiSelectOn} updateTimeSelected={updateTimeSelected} time='1630' />
-      <Blocks multiSelectOn={multiSelectOn} updateTimeSelected={updateTimeSelected} time='1700' />
+      <Blocks
+        multiSelectOn={multiSelectOn}
+        updateTimeSelected={updateTimeSelected}
+        typeCanMouseOver={typeCanMouseOver}
+        updateCanMouseOver={updateCanMouseOver}
+        time="1500"
+      />
+      <Blocks
+        multiSelectOn={multiSelectOn}
+        updateTimeSelected={updateTimeSelected}
+        typeCanMouseOver={typeCanMouseOver}
+        updateCanMouseOver={updateCanMouseOver}
+        time="1530"
+      />
+      <Blocks
+        multiSelectOn={multiSelectOn}
+        updateTimeSelected={updateTimeSelected}
+        typeCanMouseOver={typeCanMouseOver}
+        updateCanMouseOver={updateCanMouseOver}
+        time="1600"
+      />
+      <Blocks
+        multiSelectOn={multiSelectOn}
+        updateTimeSelected={updateTimeSelected}
+        typeCanMouseOver={typeCanMouseOver}
+        updateCanMouseOver={updateCanMouseOver}
+        time="1630"
+      />
+      <Blocks
+        multiSelectOn={multiSelectOn}
+        updateTimeSelected={updateTimeSelected}
+        typeCanMouseOver={typeCanMouseOver}
+        updateCanMouseOver={updateCanMouseOver}
+        time="1700"
+      />
     </div>
   );
 }

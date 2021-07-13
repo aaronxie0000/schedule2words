@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Timeblock from "./Timeblock";
 
-function DayBlock({ multiSelectOn }) {
+function DayBlock() {
   const [timesSelected, updateTimeSelected] = useState({
     1500: false,
     1530: false,
@@ -15,7 +15,6 @@ function DayBlock({ multiSelectOn }) {
       <Timeblock
         timesSelected={timesSelected}
         updateTimeSelected={updateTimeSelected}
-        multiSelectOn={multiSelectOn}
       />
     </>
   );
