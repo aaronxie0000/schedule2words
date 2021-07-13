@@ -1,28 +1,36 @@
-import styles from './styles/Block.module.css'
-import {useRef, useState } from 'react'
+import styles from "./styles/Block.module.css";
+import { useEffect, useRef, useState } from "react";
 
-function Blocks({time, day}){
+function Blocks({ multiSelectOn, time, updateTimeSelected }) {
+  const didMountRef = useRef(false);
 
-    const blockRef = useRef()
-    const [clicked, updateClicked] = useState(false)
+  const blockRef = useRef();
+  const [clicked, updateClicked] = useState(false);
 
-    function respond(){
-        updateClicked(prev=> !prev)
-        if (clicked){
-            blockRef.current.className = styles.block
-        }
-        else{
-            console.log(time, day);
-            blockRef.current.className = styles.clickedBlock
-        }
-
+  useEffect(() => {
+    if (didMountRef.current) {
+      updateTimeSelected((prev) => ({ ...prev, [time]: !prev[time] }));
+    } else {
+      didMountRef.current = true;
     }
+  }, [clicked, updateTimeSelected, time]);
 
-    return(
-        <div ref={blockRef} onClick={respond} className={styles.block}>
-            
-        </div>
-    )
+  function respond(e) {
+    if (!multiSelectOn & (e.type !== "mousedown")) {
+      return;
+    }
+    updateClicked((prev) => !prev);
+  }
+
+  return (
+    <div
+      ref={blockRef}
+      onMouseDown={respond}
+      onMouseOver={respond}
+      onClick={respond}
+      className={clicked ? styles.clickedBlock : styles.block}
+    ></div>
+  );
 }
 
-export default Blocks
+export default Blocks;

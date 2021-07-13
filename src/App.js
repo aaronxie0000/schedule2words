@@ -1,12 +1,23 @@
 import "./App.css";
-import Blocks from "./components/Blocks";
+import { useState } from 'react'
+import DayBlock from "./components/Dayblock";
+
 
 function App() {
+  const [multiSelectOn, updateMultiSelect] = useState(false)
+
+  document.body.onmousedown = () => {
+    updateMultiSelect(true)
+  }
+
+  document.body.onmouseup = () => {
+    updateMultiSelect(false)
+  }
+
   return (
     <div className="App">
       <p>Hii!!</p>
-      <Blocks time='15:00' day='Wednesday'/>
-      <Blocks time='16:00' day='Wednesday'/>
+      <DayBlock multiSelectOn={multiSelectOn} />
     </div>
   );
 }

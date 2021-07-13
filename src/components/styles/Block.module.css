@@ -6,9 +6,6 @@
     cursor: pointer;
 }
 
-.block:hover{
-    background-color: lightgrey;
-}
 
 .clickedBlock{
     width: 200px;
