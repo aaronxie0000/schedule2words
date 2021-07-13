@@ -19,7 +19,7 @@ function Blocks({
     } else {
       didMountRef.current = true;
     }
-  }, [clicked]);
+  }, [clicked]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function respond(e) {
     if (e.type === "mousedown") {
