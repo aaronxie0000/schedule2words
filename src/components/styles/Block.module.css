@@ -1,0 +1,17 @@
+
+.block{
+    width: 200px;
+    height: 40px;
+    background-color: grey;
+    cursor: pointer;
+}
+
+.block:hover{
+    background-color: lightgrey;
+}
+
+.clickedBlock{
+    width: 200px;
+    height: 40px;
+    background-color: green;
+}
