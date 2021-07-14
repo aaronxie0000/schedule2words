@@ -3,16 +3,16 @@
     padding: 20px;
     padding-right: 0;
     /* box-shadow: 5px 8px 10px 10px rgba(199, 198, 198, 0.25); */
-    width: 90%;
+    width: 87%;
     height: auto;
-    min-height: 70px;
+    min-height: 140px;
 }
 
 .button{
     background: none;
     border: none;
     position: relative;
-    right: -85%;
+    right: -83%;
     top: 30px;
     cursor: pointer;
 }

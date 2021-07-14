@@ -1,6 +1,7 @@
 html {
-  width: 375px;
+  width: 400px;
   height: 500px;
+  border: 1px solid red;
 }
 
 body {
