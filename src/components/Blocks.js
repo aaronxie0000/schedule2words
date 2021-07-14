@@ -34,7 +34,6 @@ function Blocks({
     }
   }
 
- 
   if (time.slice(2, 4) === "00") {
     return (
       <div

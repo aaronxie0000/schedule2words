@@ -16,16 +16,18 @@ function Timeblock({ timesSelected, updateTimeSelected }) {
 
   return (
     <div>
-      {Object.keys(timesSelected).sort().map((key, index) => (
-        <Blocks
-          key={index}
-          multiSelectOn={multiSelectOn}
-          updateTimeSelected={updateTimeSelected}
-          typeCanMouseOver={typeCanMouseOver}
-          updateCanMouseOver={updateCanMouseOver}
-          time={key}
-        />
-      ))}
+      {Object.keys(timesSelected)
+        .sort()
+        .map((key, index) => (
+          <Blocks
+            key={index}
+            multiSelectOn={multiSelectOn}
+            updateTimeSelected={updateTimeSelected}
+            typeCanMouseOver={typeCanMouseOver}
+            updateCanMouseOver={updateCanMouseOver}
+            time={key}
+          />
+        ))}
     </div>
   );
 }
