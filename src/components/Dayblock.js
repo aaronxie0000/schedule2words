@@ -2,8 +2,10 @@ import { useState } from "react";
 import Timeblock from "./Timeblock";
 
 function DayBlock() {
+  // times are start time, eg. 2130 is true means free from 2130 to 2200 (+30min)
   const [timesSelected, updateTimeSelected] = useState({
     '0800': false,
+    '0830': false,
     '0900': false,
     '0930': false,
     '1000': false,
@@ -27,7 +29,9 @@ function DayBlock() {
     '1900': false,
     '1930': false,
     '2000': false,
-    '2100': false
+    '2030': false,
+    '2100': false,
+    '2130': false,
   });
 
   return (

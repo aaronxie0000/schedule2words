@@ -14,14 +14,11 @@ function Timeblock({ timesSelected, updateTimeSelected }) {
 
   const [typeCanMouseOver, updateCanMouseOver] = useState(false);
 
-  for (const x in timesSelected){
-    console.log(x)
-  }
-
   return (
     <div>
-      {Object.keys(timesSelected).sort().map((key) => (
+      {Object.keys(timesSelected).sort().map((key, index) => (
         <Blocks
+          key={index}
           multiSelectOn={multiSelectOn}
           updateTimeSelected={updateTimeSelected}
           typeCanMouseOver={typeCanMouseOver}

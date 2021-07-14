@@ -1,4 +1,4 @@
-import "./App.css";
+import styles from "./App.module.css";
 import DayBlock from "./components/Dayblock";
 
 function App() {
@@ -8,9 +8,11 @@ function App() {
   // console.log(d.getHours())
 
   return (
-    <div className="App">
+    <div>
       <p>Hii!!</p>
-      <DayBlock />
+      <div className={styles.dayCont}>
+        <DayBlock />
+      </div>
     </div>
   );
 }

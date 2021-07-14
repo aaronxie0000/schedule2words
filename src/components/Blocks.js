@@ -34,15 +34,38 @@ function Blocks({
     }
   }
 
-  return (
-    <div
-      ref={blockRef}
-      onMouseDown={respond}
-      onMouseOver={respond}
-      onClick={respond}
-      className={clicked ? styles.clickedBlock + ' ' + styles.block : styles.unclickedblock  + ' ' + styles.block }
-    >{time.slice(0,2) + ':' + time.slice(2, 4)}</div>
-  );
+ 
+  if (time.slice(2, 4) === "00") {
+    return (
+      <div
+        ref={blockRef}
+        onMouseDown={respond}
+        onMouseOver={respond}
+        onClick={respond}
+        className={
+          clicked
+            ? styles.clickedBlock + " " + styles.block
+            : styles.unclickedblock + " " + styles.block
+        }
+      >
+        <p>{time.slice(0, 2) + ":" + time.slice(2, 4)} </p>
+      </div>
+    );
+  } else {
+    return (
+      <div
+        ref={blockRef}
+        onMouseDown={respond}
+        onMouseOver={respond}
+        onClick={respond}
+        className={
+          clicked
+            ? styles.clickedBlock + " " + styles.halfBlock
+            : styles.unclickedblock + " " + styles.halfBlock
+        }
+      ></div>
+    );
+  }
 }
 
 export default Blocks;

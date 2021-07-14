@@ -1,19 +1,36 @@
 .block {
-  width: 200px;
-  height: 22px;
-  font-size: 15px;
-  margin: 2px 0;
   cursor: pointer;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100px;
+  height: 13px;
+  margin: 0;
+  margin-top: -3.5px;
+  overflow: visible;
+  border-radius: 5px 5px 0 0;
+}
+
+.block>p{
+  font-weight: bolder;
+  position: relative;
+  left: -40px;
+  top: -6px;
+  font-size: 10px;
+  color: purple;
 }
 
 .unclickedblock {
-  background-color: grey;
+  background-color: hsl(201, 98%, 90%);
 }
 
 .clickedBlock {
-  background-color: green;
+  background-color: hsl(201, 98%, 50%);
+}
+
+.halfBlock{
+  width: 100px;
+  height: 13px;
+  font-size: 15px;
+  cursor: pointer;
+
+  margin: 0;
+  border-radius: 0 0 5px 5px;
 }
