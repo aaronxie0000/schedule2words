@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TimeBlock from "./TimeBlock";
+import Timeblock from "./Timeblock";
 
 function Time({ timesSelected, updateTimeSelected }) {
   const [multiSelectOn, updateMultiSelect] = useState(false);
@@ -23,7 +23,7 @@ function Time({ timesSelected, updateTimeSelected }) {
       {Object.keys(timesSelected)
         .sort()
         .map((key, index) => (
-          <TimeBlock
+          <Timeblock
             key={index}
             multiSelectOn={multiSelectOn}
             updateTimeSelected={updateTimeSelected}

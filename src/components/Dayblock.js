@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import styles from './styles/DayBlock.module.css'
+import styles from './styles/Dayblock.module.css'
 
-function DayBlock({day, updateDaySelected}){
+function Dayblock({day, updateDaySelected}){
     const [clicked, updateClicked] = useState(false)
 
     function handleDay(){
@@ -16,4 +16,4 @@ function DayBlock({day, updateDaySelected}){
     )
 }
 
-export default DayBlock;
+export default Dayblock;

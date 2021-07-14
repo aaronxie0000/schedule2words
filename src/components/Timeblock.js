@@ -1,7 +1,7 @@
-import styles from "./styles/TimeBlock.module.css";
+import styles from "./styles/Timeblock.module.css";
 import { useEffect, useRef, useState } from "react";
 
-function TimeBlock({
+function Timeblock({
   multiSelectOn,
   time,
   updateTimeSelected,
@@ -67,4 +67,4 @@ function TimeBlock({
   }
 }
 
-export default TimeBlock;
+export default Timeblock;
