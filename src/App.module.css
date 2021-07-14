@@ -1,4 +1,19 @@
+.mainCont{
+    display: grid;
+    grid-template-areas: 
+    "time day"
+    "time .";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.5fr 1fr;
+    padding: 20px 10px;
+}
+
 .timeCont{
+    grid-area: time;
     padding-top: 5px;
-    padding-left: 55px;
+    padding-left: 45px;
+}
+
+.dayCont{
+    grid-area: day;
 }

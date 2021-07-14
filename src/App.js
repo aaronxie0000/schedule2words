@@ -1,13 +1,10 @@
 import { useState } from "react";
 import styles from "./App.module.css";
-import Dayblock from "./components/Dayblock";
-import Timeblock from "./components/Timeblock";
+import Day from "./components/Day";
+import Time from "./components/Time";
+import Words from "./components/Words";
 
 function App() {
-  // const time = "1500";
-  // const d = new Date();
-  // d.setHours(parseInt(time.slice(0, 2)), parseInt(time.slice(2, 4)));
-  // console.log(d.getHours())
 
   // times are start time, eg. 2130 is true means free from 2130 to 2200 (+30min)
   const [timesSelected, updateTimeSelected] = useState({
@@ -50,19 +47,21 @@ function App() {
   });
 
   return (
-    <div>
-      <p>Hii!!</p>
+    <div className={styles.mainCont}>
       <div className={styles.timeCont}>
-        <Timeblock
+        <Time
           timesSelected={timesSelected}
           updateTimeSelected={updateTimeSelected}
         />
       </div>
       <div className={styles.dayCont}>
-        <Dayblock
+        <Day
           daysSelected={daysSelected}
           updateDaySelected={updateDaySelected}
         />
+      </div>
+      <div className={styles.wordCont}>
+        <Words daysSelected={daysSelected} timesSelected={timesSelected}/>
       </div>
     </div>
   );

@@ -1,0 +1,22 @@
+.day{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 5px 7px;
+}
+
+.unselected{
+    background-color: hsl(201, 98%, 90%);
+    color: #fc5c04;
+}
+
+.selected{
+    background-color: hsl(201, 98%, 50%);
+    color: white;
+}

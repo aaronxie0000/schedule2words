@@ -1,9 +1,6 @@
 html {
-  width: 350px;
+  width: 375px;
   height: 500px;
-  border: 1px solid red;
-  padding: 8px 30px;
-  /* colors: fc5c04 04a4fc */
 }
 
 body {

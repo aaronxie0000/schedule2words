@@ -1,35 +1,70 @@
-import { useState } from "react";
-import Blocks from "./Blocks";
+import styles from "./styles/TimeBlock.module.css";
+import { useEffect, useRef, useState } from "react";
 
-function Timeblock({ timesSelected, updateTimeSelected }) {
-  const [multiSelectOn, updateMultiSelect] = useState(false);
+function TimeBlock({
+  multiSelectOn,
+  time,
+  updateTimeSelected,
+  typeCanMouseOver,
+  updateCanMouseOver,
+}) {
+  const didMountRef = useRef(false);
 
-  document.body.onmousedown = () => {
-    updateMultiSelect(true);
-  };
+  const blockRef = useRef();
+  const [clicked, updateClicked] = useState(false);
 
-  document.body.onmouseup = () => {
-    updateMultiSelect(false);
-  };
+  useEffect(() => {
+    if (didMountRef.current) {
+      updateTimeSelected((prev) => ({ ...prev, [time]: !prev[time] }));
+    } else {
+      didMountRef.current = true;
+    }
+  }, [clicked]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const [typeCanMouseOver, updateCanMouseOver] = useState(false);
+  function respond(e) {
+    if (e.type === "mousedown") {
+      updateCanMouseOver(!clicked); // can change mouse over change status only if change to same as starting block's
+      updateClicked((prev) => !prev);
+    } else if (!multiSelectOn) {
+      return;
+    } else if (e.type === "mouseover") {
+      updateClicked(typeCanMouseOver);
+    } else {
+      updateClicked((prev) => !prev);
+    }
+  }
 
-  return (
-    <div>
-      {Object.keys(timesSelected)
-        .sort()
-        .map((key, index) => (
-          <Blocks
-            key={index}
-            multiSelectOn={multiSelectOn}
-            updateTimeSelected={updateTimeSelected}
-            typeCanMouseOver={typeCanMouseOver}
-            updateCanMouseOver={updateCanMouseOver}
-            time={key}
-          />
-        ))}
-    </div>
-  );
+  if (time.slice(2, 4) === "00") {
+    return (
+      <div
+        ref={blockRef}
+        onMouseDown={respond}
+        onMouseOver={respond}
+        onClick={respond}
+        className={
+          clicked
+            ? styles.clickedBlock + " " + styles.block
+            : styles.unclickedblock + " " + styles.block
+        }
+      >
+        <p>{time.slice(0, 2) + ":" + time.slice(2, 4)} </p>
+      </div>
+    );
+  } else {
+    return (
+      <div
+        ref={blockRef}
+        onMouseDown={respond}
+        onMouseOver={respond}
+        onClick={respond}
+        className={
+          clicked
+            ? styles.clickedBlock + " " + styles.halfBlock
+            : styles.unclickedblock + " " + styles.halfBlock
+        }
+      ></div>
+    );
+  }
 }
 
-export default Timeblock;
+export default TimeBlock;
