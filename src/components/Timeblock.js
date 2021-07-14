@@ -1,8 +1,7 @@
 import { useState } from "react";
 import Blocks from "./Blocks";
 
-function Timeblock({timesSelected, updateTimeSelected}) {
-
+function Timeblock({ timesSelected, updateTimeSelected }) {
   const [multiSelectOn, updateMultiSelect] = useState(false);
 
   document.body.onmousedown = () => {
@@ -15,44 +14,21 @@ function Timeblock({timesSelected, updateTimeSelected}) {
 
   const [typeCanMouseOver, updateCanMouseOver] = useState(false);
 
+  for (const x in timesSelected){
+    console.log(x)
+  }
 
   return (
     <div>
-      <Blocks
-        multiSelectOn={multiSelectOn}
-        updateTimeSelected={updateTimeSelected}
-        typeCanMouseOver={typeCanMouseOver}
-        updateCanMouseOver={updateCanMouseOver}
-        time="1500"
-      />
-      <Blocks
-        multiSelectOn={multiSelectOn}
-        updateTimeSelected={updateTimeSelected}
-        typeCanMouseOver={typeCanMouseOver}
-        updateCanMouseOver={updateCanMouseOver}
-        time="1530"
-      />
-      <Blocks
-        multiSelectOn={multiSelectOn}
-        updateTimeSelected={updateTimeSelected}
-        typeCanMouseOver={typeCanMouseOver}
-        updateCanMouseOver={updateCanMouseOver}
-        time="1600"
-      />
-      <Blocks
-        multiSelectOn={multiSelectOn}
-        updateTimeSelected={updateTimeSelected}
-        typeCanMouseOver={typeCanMouseOver}
-        updateCanMouseOver={updateCanMouseOver}
-        time="1630"
-      />
-      <Blocks
-        multiSelectOn={multiSelectOn}
-        updateTimeSelected={updateTimeSelected}
-        typeCanMouseOver={typeCanMouseOver}
-        updateCanMouseOver={updateCanMouseOver}
-        time="1700"
-      />
+      {Object.keys(timesSelected).sort().map((key) => (
+        <Blocks
+          multiSelectOn={multiSelectOn}
+          updateTimeSelected={updateTimeSelected}
+          typeCanMouseOver={typeCanMouseOver}
+          updateCanMouseOver={updateCanMouseOver}
+          time={key}
+        />
+      ))}
     </div>
   );
 }

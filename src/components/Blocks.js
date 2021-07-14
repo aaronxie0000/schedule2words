@@ -41,7 +41,7 @@ function Blocks({
       onMouseOver={respond}
       onClick={respond}
       className={clicked ? styles.clickedBlock + ' ' + styles.block : styles.unclickedblock  + ' ' + styles.block }
-    ></div>
+    >{time.slice(0,2) + ':' + time.slice(2, 4)}</div>
   );
 }
 

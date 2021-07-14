@@ -1,9 +1,13 @@
 .block {
   width: 200px;
-  height: 40px;
-  cursor: pointer;
+  height: 22px;
+  font-size: 15px;
   margin: 2px 0;
-  border: 3px dotted black;
+  cursor: pointer;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .unclickedblock {
