@@ -178,9 +178,11 @@ function Words({ daysSelected, timesSelected }) {
       rawTimes.avaDays[rawTimes.avaDays.length-1] = 'and ' + rawTimes.avaDays[rawTimes.avaDays.length-1]
     }
 
-    const sentence = 'I am available ' + stringAvaTimes[0] + (stringAvaTimes[1] ? " and " + stringAvaTimes[1] : " ") + " on " + rawTimes.avaDays.join(", ")
+    const timeZone = new Date().toLocaleTimeString(undefined,{timeZoneName:'short'}).split(' ')[2]
+    const option1 = 'I am in ' + timeZone + ', and I am available ' + stringAvaTimes[0] + (stringAvaTimes[1] ? " and " + stringAvaTimes[1] : " ") + " on " + rawTimes.avaDays.join(", ")
 
-    updateDefText(sentence)
+
+    updateDefText(option1)
   }
 
   function copyAway() {
