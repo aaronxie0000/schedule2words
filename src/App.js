@@ -47,6 +47,10 @@ function App() {
   });
 
   return (
+    <>
+    <div className={styles.topBar}>
+        <p>schedule2words</p>
+      </div>
     <div className={styles.mainCont}>
       <div className={styles.timeCont}>
         <Time
@@ -60,10 +64,11 @@ function App() {
           updateDaySelected={updateDaySelected}
         />
       </div>
-      <div className={styles.wordCont}>
+
         <Words daysSelected={daysSelected} timesSelected={timesSelected}/>
-      </div>
+
     </div>
+    </>
   );
 }
 

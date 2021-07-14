@@ -12,6 +12,10 @@ function Time({ timesSelected, updateTimeSelected }) {
     updateMultiSelect(false);
   };
 
+  document.body.onmouseleave = () => {
+    updateMultiSelect(false)
+  }
+
   const [typeCanMouseOver, updateCanMouseOver] = useState(false);
 
   return (

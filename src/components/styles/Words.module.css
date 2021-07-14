@@ -1,11 +1,16 @@
 .wordCont {
+    grid-area: word;
     background-color: whitesmoke;
     padding: 20px;
     padding-right: 0;
-    /* box-shadow: 5px 8px 10px 10px rgba(199, 198, 198, 0.25); */
     width: 87%;
-    height: auto;
-    min-height: 140px;
+    height: 70%;
+    overflow: scroll;
+}
+
+.wordCont>p{
+    margin-top: -10px;
+    overflow: scroll;
 }
 
 .button{
@@ -13,7 +18,7 @@
     border: none;
     position: relative;
     right: -83%;
-    top: 30px;
+    top: -7px;
     cursor: pointer;
 }
 

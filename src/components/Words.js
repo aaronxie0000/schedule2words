@@ -17,6 +17,12 @@ function Words({ daysSelected, timesSelected }) {
     }
   }
 
+  for (const day in daysSelected) {
+    if (daysSelected[day] === true) {
+      avaTimes.push(day);
+    }
+  }
+
   const option1 = avaTimes.join(", ");
 
   function copyAway() {
@@ -31,16 +37,18 @@ function Words({ daysSelected, timesSelected }) {
   }
 
   return (
-    <div>
+    <div className={styles.wordCont}>
       <button
         onClick={copyAway}
-        className={copied ? styles.button + ' ' + styles.copied : styles.button + ' ' +  styles.notCopied}
+        className={
+          copied
+            ? styles.button + " " + styles.copied
+            : styles.button + " " + styles.notCopied
+        }
       >
         <IoMdCopy size={18} />
       </button>
-      <div className={styles.wordCont}>
-        <p>{option1}</p>
-      </div>
+      <p>{option1}</p>
     </div>
   );
 }
