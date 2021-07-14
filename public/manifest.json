@@ -4,7 +4,7 @@
   "name": "Schedule2Words",
   "description": "Convert your availability from calender view to copy-past-able sentences",
   "version": "0.0.1",
-
+  "permissions":["storage"],
   "browser_action": {
     "default_popup": "index.html",
     "default_title": "schedule2words" 

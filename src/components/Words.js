@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { useState } from "react";
 import styles from "./styles/Words.module.css";
 import { IoMdCopy } from "react-icons/io";
@@ -185,6 +186,19 @@ function Words({ daysSelected, timesSelected }) {
     updateDefText(option1)
   }
 
+  function reloadHandle(){
+    const rawTimes = getRawDayTime()
+    parseToWords(rawTimes);
+    if (chrome && chrome.storage){
+      chrome.storage.sync.set({'schedule2wordsTimes': timesSelected}, ()=>(
+        console.log("Uploaded Success Times")
+      ));
+      chrome.storage.sync.set({'schedule2wordsDays': daysSelected}, ()=>(
+        console.log("Uploaded Success Days")
+      ));
+    }
+  }
+
   function copyAway() {
     findTimeBlocks(timesSelected);
     navigator.clipboard.writeText(defText).then(copySuccess);
@@ -211,7 +225,7 @@ function Words({ daysSelected, timesSelected }) {
       </button>
       <button
         className={styles.enterButton}
-        onClick={() => parseToWords(getRawDayTime())}
+        onClick={reloadHandle}
       >
         <AiOutlineReload size={16} />
       </button>

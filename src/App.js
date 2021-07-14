@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { useState } from "react";
 import styles from "./App.module.css";
 import Day from "./components/Day";
@@ -7,7 +8,7 @@ import Words from "./components/Words";
 function App() {
 
   // times are start time, eg. 2130 is true means free from 2130 to 2200 (+30min)
-  const [timesSelected, updateTimeSelected] = useState({
+  const defTimes = {
     "0800": false,
     "0830": false,
     "0900": false,
@@ -36,14 +37,38 @@ function App() {
     2030: false,
     2100: false,
     2130: false,
+  }
+
+  const [timesSelected, updateTimeSelected] = useState(()=>{
+    if (chrome && chrome.storage){
+      chrome.storage.sync.get(['schedule2wordsTimes'], (res)=>{
+        if (res && res.schedule2wordsTimes){
+          console.log(res.schedule2wordsTimes)
+          return res.schedule2wordsTimes
+        }
+      })
+    }
+    return defTimes;
   });
 
-  const [daysSelected, updateDaySelected] = useState({
+  const defDays = {
     Monday: false,
     Tuesday: false,
     Wednesday: false,
     Thursday: false,
     Friday: false,
+  }
+
+  const [daysSelected, updateDaySelected] = useState(()=>{
+    if (chrome && chrome.storage){
+      chrome.storage.sync.get(['schedule2wordsDays'], (res)=>{
+        if (res && res.schedule2wordsDays){
+          console.log(res.schedule2wordsDays)
+          return res.schedule2wordsDays
+        }
+      })
+    }
+    return defDays;
   });
 
   return (

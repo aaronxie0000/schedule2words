@@ -11,6 +11,8 @@
 .wordCont>p{
     margin-top: 2px;
     overflow: scroll;
+    font-size: 14px;
+    padding-right: 12px;
 }
 
 .button{
