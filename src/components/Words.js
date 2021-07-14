@@ -2,14 +2,11 @@ import { useState } from "react";
 import styles from "./styles/Words.module.css";
 import { IoMdCopy } from "react-icons/io";
 import { AiOutlineReload } from "react-icons/ai";
+import dayjs from "dayjs";
 
 function Words({ daysSelected, timesSelected }) {
   const [copied, updateCopied] = useState(false);
   const [defText, updateDefText] = useState("");
-  // const time = "1500";
-  // const d = new Date();
-  // d.setHours(parseInt(time.slice(0, 2)), parseInt(time.slice(2, 4)));
-  // console.log(d.getHours())
 
   function getRawDayTime() {
     const cur = findTimeBlocks(timesSelected);
@@ -117,7 +114,73 @@ function Words({ daysSelected, timesSelected }) {
   }
 
   function parseToWords(rawTimes) {
-    console.log(rawTimes);
+    if (rawTimes.avaDays.length === 0 || rawTimes.curLongest.length === 0) {
+      return;
+    }
+
+    const stringAvaTimes = [];
+
+    let firstTimeStart = new dayjs();
+    const stringFirstTime = rawTimes.curLongest[0];
+    firstTimeStart = firstTimeStart.set(
+      "hour",
+      parseInt(stringFirstTime.slice(0, 2))
+    );
+    firstTimeStart = firstTimeStart.set(
+      "minute",
+      parseInt(stringFirstTime.slice(2, 4))
+    );
+
+    let firstTimeEnd = new dayjs();
+    const stringSecondTime = rawTimes.curLongest[1];
+    firstTimeEnd = firstTimeEnd.hour(parseInt(stringSecondTime.slice(0, 2)));
+    firstTimeEnd = firstTimeEnd.minute(parseInt(stringSecondTime.slice(2, 4)));
+    firstTimeEnd = firstTimeEnd.add(30, "minutes");
+
+    stringAvaTimes.push(
+      "from " +
+        firstTimeStart.format("h:mm A") +
+        " to " +
+        firstTimeEnd.format("h:mm A")
+    );
+
+    if (rawTimes.curSecond.length !== 0) {
+      let secondTimeStart = new dayjs();
+      const stringSecondTimeStart = rawTimes.curSecond[0];
+      secondTimeStart = secondTimeStart.set(
+        "hour",
+        parseInt(stringSecondTimeStart.slice(0, 2))
+      );
+      secondTimeStart = secondTimeStart.set(
+        "minute",
+        parseInt(stringSecondTimeStart.slice(2, 4))
+      );
+
+      let secondTimeEnd = new dayjs();
+      const stringSecondTimeEnd = rawTimes.curSecond[1];
+      secondTimeEnd = secondTimeEnd.hour(
+        parseInt(stringSecondTimeEnd.slice(0, 2))
+      );
+      secondTimeEnd = secondTimeEnd.minute(
+        parseInt(stringSecondTimeEnd.slice(2, 4))
+      );
+      secondTimeEnd = secondTimeEnd.add(30, "minutes");
+
+      stringAvaTimes.push(
+        "from " +
+        secondTimeStart.format("h:mm A") +
+          " to " +
+          secondTimeEnd.format("h:mm A")
+      );
+    }
+
+    if (rawTimes.avaDays.length !== 1){
+      rawTimes.avaDays[rawTimes.avaDays.length-1] = 'and ' + rawTimes.avaDays[rawTimes.avaDays.length-1]
+    }
+
+    const sentence = 'I am available ' + stringAvaTimes[0] + (stringAvaTimes[1] ? " and " + stringAvaTimes[1] : " ") + " on " + rawTimes.avaDays.join(", ")
+
+    updateDefText(sentence)
   }
 
   function copyAway() {
