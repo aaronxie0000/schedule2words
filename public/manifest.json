@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "Schedule2Words",
-  "description": "Convert your availability from calender view to copy-past-able sentences",
+  "description": "Enter your availability in calendar view, then copy-paste it as sentences",
   "version": "0.1",
   "permissions":["storage"],
   "browser_action": {
