@@ -39,17 +39,7 @@ function App() {
     2130: false,
   }
 
-  const [timesSelected, updateTimeSelected] = useState(()=>{
-    if (chrome && chrome.storage){
-      chrome.storage.sync.get(['schedule2wordsTimes'], (res)=>{
-        if (res && res.schedule2wordsTimes){
-          console.log(res.schedule2wordsTimes)
-          return res.schedule2wordsTimes
-        }
-      })
-    }
-    return defTimes;
-  });
+  const [timesSelected, updateTimeSelected] = useState(defTimes);
 
   const defDays = {
     Monday: false,
@@ -59,17 +49,25 @@ function App() {
     Friday: false,
   }
 
-  const [daysSelected, updateDaySelected] = useState(()=>{
+  const [daysSelected, updateDaySelected] = useState(defDays);
+
+  useEffect(()=>{
     if (chrome && chrome.storage){
       chrome.storage.sync.get(['schedule2wordsDays'], (res)=>{
         if (res && res.schedule2wordsDays){
           console.log(res.schedule2wordsDays)
-          return res.schedule2wordsDays
+          updateDaySelected(res.schedule2wordsDays)
+        }
+      })
+      chrome.storage.sync.get(['schedule2wordsTimes'], (res)=>{
+        if (res && res.schedule2wordsTimes){
+          console.log(res.schedule2wordsTimes)
+          updateTimeSelected(res.schedule2wordsTimes)
         }
       })
     }
-    return defDays;
-  });
+  }, [])
+
 
   return (
     <>
