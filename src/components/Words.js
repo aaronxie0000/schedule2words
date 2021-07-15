@@ -190,8 +190,8 @@ function Words({ daysSelected, timesSelected }) {
     const rawTimes = getRawDayTime()
     parseToWords(rawTimes);
     if (chrome && chrome.storage){
-      chrome.storage.sync.set({'schedule2wordsTimes': timesSelected});
-      chrome.storage.sync.set({'schedule2wordsDays': daysSelected});
+      chrome.storage.sync.set({'schedule2wordsTimes': JSON.stringify(timesSelected)});
+      chrome.storage.sync.set({'schedule2wordsDays': JSON.stringify(daysSelected)});
     }
   }
 

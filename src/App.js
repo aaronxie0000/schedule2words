@@ -55,12 +55,12 @@ function App() {
     if (chrome && chrome.storage){
       chrome.storage.sync.get(['schedule2wordsDays'], (res)=>{
         if (res && res.schedule2wordsDays){
-          updateDaySelected(res.schedule2wordsDays)
+          updateDaySelected(JSON.parse(res.schedule2wordsDays))
         }
       })
       chrome.storage.sync.get(['schedule2wordsTimes'], (res)=>{
         if (res && res.schedule2wordsTimes){
-          updateTimeSelected(res.schedule2wordsTimes)
+          updateTimeSelected(JSON.parse(res.schedule2wordsTimes))
         }
       })
     }
