@@ -55,18 +55,16 @@ function App() {
     if (chrome && chrome.storage){
       chrome.storage.sync.get(['schedule2wordsDays'], (res)=>{
         if (res && res.schedule2wordsDays){
-          console.log(res.schedule2wordsDays)
           updateDaySelected(res.schedule2wordsDays)
         }
       })
       chrome.storage.sync.get(['schedule2wordsTimes'], (res)=>{
         if (res && res.schedule2wordsTimes){
-          console.log(res.schedule2wordsTimes)
           updateTimeSelected(res.schedule2wordsTimes)
         }
       })
     }
-  }, [])
+  }, []) // Very important to pass empty array, as this useEffect will cause the component to re-render, and if empty will be called every re-render. Empty array allows only when mount for first time
 
 
   return (
