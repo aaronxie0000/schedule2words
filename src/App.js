@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./App.module.css";
 import Day from "./components/Day";
 import Time from "./components/Time";
@@ -77,7 +77,7 @@ function App() {
         <p>schedule2words</p>
       </div>
     <div className={styles.mainCont}>
-      <div className={styles.timeCont}>
+      <div id="timeSec" className={styles.timeCont}>
         <Time
           timesSelected={timesSelected}
           updateTimeSelected={updateTimeSelected}

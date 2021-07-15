@@ -1,20 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Timeblock from "./Timeblock";
 
 function Time({ timesSelected, updateTimeSelected }) {
   const [multiSelectOn, updateMultiSelect] = useState(false);
 
-  document.body.onmousedown = () => {
-    updateMultiSelect(true);
-  };
+  useEffect(() => {
+    document.getElementById("timeSec").onmousedown = () => {
+      updateMultiSelect(true);
+    };
+  }, []);
 
   document.body.onmouseup = () => {
     updateMultiSelect(false);
   };
 
   document.body.onmouseleave = () => {
-    updateMultiSelect(false)
-  }
+    updateMultiSelect(false);
+  };
 
   const [typeCanMouseOver, updateCanMouseOver] = useState(false);
 
@@ -30,6 +32,7 @@ function Time({ timesSelected, updateTimeSelected }) {
             typeCanMouseOver={typeCanMouseOver}
             updateCanMouseOver={updateCanMouseOver}
             time={key}
+            timesSelected={timesSelected}
           />
         ))}
     </div>

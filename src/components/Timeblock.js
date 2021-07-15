@@ -1,5 +1,4 @@
 import styles from "./styles/Timeblock.module.css";
-import { useEffect, useRef, useState } from "react";
 
 function Timeblock({
   multiSelectOn,
@@ -7,42 +6,31 @@ function Timeblock({
   updateTimeSelected,
   typeCanMouseOver,
   updateCanMouseOver,
+  timesSelected
 }) {
-  const didMountRef = useRef(false);
 
-  const blockRef = useRef();
-  const [clicked, updateClicked] = useState(false);
-
-  useEffect(() => {
-    if (didMountRef.current) {
-      updateTimeSelected((prev) => ({ ...prev, [time]: !prev[time] }));
-    } else {
-      didMountRef.current = true;
-    }
-  }, [clicked]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function respond(e) {
     if (e.type === "mousedown") {
-      updateCanMouseOver(!clicked); // can change mouse over change status only if change to same as starting block's
-      updateClicked((prev) => !prev);
+      updateCanMouseOver(!timesSelected[time] ); // can change mouse over change status only if change to same as starting block's
+      updateTimeSelected((prev) => ({ ...prev, [time]: !prev[time] }));
     } else if (!multiSelectOn) {
       return;
     } else if (e.type === "mouseover") {
-      updateClicked(typeCanMouseOver);
+      updateTimeSelected((prev) => ({ ...prev, [time]: typeCanMouseOver }));
     } else {
-      updateClicked((prev) => !prev);
+      updateTimeSelected((prev) => ({ ...prev, [time]: !prev[time] }));
     }
   }
 
   if (time.slice(2, 4) === "00") {
     return (
       <div
-        ref={blockRef}
         onMouseDown={respond}
         onMouseOver={respond}
         onClick={respond}
         className={
-          clicked
+          timesSelected[time]
             ? styles.clickedBlock + " " + styles.block
             : styles.unclickedblock + " " + styles.block
         }
@@ -53,12 +41,11 @@ function Timeblock({
   } else {
     return (
       <div
-        ref={blockRef}
         onMouseDown={respond}
         onMouseOver={respond}
         onClick={respond}
         className={
-          clicked
+          timesSelected[time]
             ? styles.clickedBlock + " " + styles.halfBlock
             : styles.unclickedblock + " " + styles.halfBlock
         }
